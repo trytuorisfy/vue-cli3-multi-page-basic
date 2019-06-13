@@ -5,7 +5,7 @@ axios.defaults.timeout = 10000
 axios.interceptors.request.use(
   config => {
     // Do something before request is sent
-    //判断下是否需要序列号,先隐藏
+    //判断下是否需要序列化,先隐藏
     /*
     if (config.method.toLocaleLowerCase() === 'post' 
       || config.method.toLocaleLowerCase() === 'put' 
@@ -23,19 +23,24 @@ axios.interceptors.request.use(
 // Add a response interceptor
 axios.interceptors.response.use(
   response => {
-    // Do something with response data
-    if(response.data.success){
-      return response.data.data
+    let data = response.data;
+    if(data.status == '2000'){
+      return data;
     }else{
-      console.log('aaa')
-      // window.location.href = './home.html'
-    }
+      let error = new Error(data.description)
 
-    // return response; //原来
+      error.data = data;
+      error.response = response;
+
+      throw error
+    }
   }, 
   error => {
+    console.log('error 区域')
     // Do something with response error
       if (error && error.response) {
+
+        /*
         switch (error.response.status) {
           case 400:
           error.message = '请求错误'
@@ -84,6 +89,13 @@ axios.interceptors.response.use(
       
           default:
         }
+        */
+        document.getElementById('alert-msg').style.display = 'block';
+        document.getElementById('alert-msg').innerHtml = '请求失败,请重试';
+        setTimeout(() => {
+          document.getElementById('alert-msg').style.display = 'none';
+          document.getElementById('alert-msg').innerHtml = '';          
+        },2000)
       }   
     return Promise.reject(error);
   });
