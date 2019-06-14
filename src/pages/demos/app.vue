@@ -17,7 +17,10 @@
         <button type="button" class="btn btn-outline-primary mar-r-15">主色带边框</button>
         <button type="button" class="btn btn-primary mar-r-15 btn-sm">主色</button>
         <a class="btn btn-primary mar-r-15">a链接主色</a>
-        <a class="btn btn-outline-primary mar-r-15">a链接主色带边框</a>        
+        <a class="btn btn-outline-primary mar-r-15">a链接主色带边框</a>
+        <button class="btn btn-primary disabled mar-r-15">a链接主色disabled</button>
+        <button class="btn btn-outline-primary disabled mar-r-15">a链接主色带边框disabled</button> 
+        <button type="button" class="btn btn-default mar-r-15">btn-default</button>         
         <div style="width: 200px">
           <button type="button" class="btn btn-outline-primary btn-sm btn-block">块状按钮</button>         
         </div>                       
