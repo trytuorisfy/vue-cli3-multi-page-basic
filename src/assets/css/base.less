@@ -3,6 +3,9 @@
 *::after {
   box-sizing: border-box;
 }
+html{
+	font-size:14px;
+}
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 14px;
@@ -134,9 +137,6 @@ a{
 .tdu{
   text-decoration: underline;
 }
-.lh-24{
-  line-height: 24px;
-}
 .hov-inherit{
 	&:hover{
 		background-color: inherit;
@@ -184,6 +184,9 @@ a{
 .pad-0{
 	padding: 0;
 }
+.pad-10{
+	padding: 10px;
+}
 .pad-15{
 	padding: 15px;
 }
@@ -199,14 +202,50 @@ a{
 .pad-t-5{
 	padding-top: 5px;
 }
+.pad-t-10{
+	padding-top: 10px;
+}
+.pad-t-15{
+	padding-top: 15px;
+}
+.pad-t-20{
+	padding-top: 20px;
+}
+.pad-r-0{
+	padding-right: 0;
+}
+.pad-r-5{
+	padding-right: 5px;
+}
+.pad-r-10{
+	padding-right: 10px;
+}
+.pad-r-15{
+	padding-right: 15px;
+}
+.pad-r-20{
+	padding-right: 20px;
+}
 .pad-b-0{
 	padding-bottom: 0;
 }
 .pad-b-5{
 	padding-bottom: 5px;
 }
+.pad-b-10{
+	padding-bottom: 10px;
+}
+.pad-b-15{
+	padding-bottom: 15px;
+}
+.pad-b-20{
+	padding-bottom: 20px;
+}
 .pad-l-0{
 	padding-left: 0;
+}
+.pad-l-5{
+	padding-left: 5px;
 }
 .pad-l-10{
 	padding-left: 10px;
@@ -217,27 +256,15 @@ a{
 .pad-l-20{
 	padding-left: 20px;
 }
-.pad-r-0{
-	padding-right: 0;
-}
-.pad-r-10{
-	padding-right: 10px;
-}
-.pad-r-20{
-	padding-right: 20px;
-}
 .pad-5-10{
 	padding: 5px 10px;
-}
-.pad-10{
-	padding: 10px;
-}
-.pad-20{
-	padding: 20px;
 }
 .pad-tb-5{
 	padding-top:5px;
 	padding-bottom:5px;
+}
+.mar-l-0{
+	margin-left: 0;
 }
 .mar-l-5{
 	margin-left: 5px;
@@ -250,6 +277,9 @@ a{
 }
 .mar-l-20{
 	margin-left: 20px;
+}
+.mar-r-0{
+	margin-right: 0;
 }
 .mar-r-2{
 	margin-right: 2px;
@@ -265,9 +295,6 @@ a{
 }
 .mar-r-20{
 	margin-right: 20px;
-}
-.mar-r-230{
-	margin-right: 230px;
 }
 .mar-t-0{
 	margin-top: 0;
@@ -305,6 +332,9 @@ a{
 .lh-22{
 	line-height: 22px;
 }
+.lh-24{
+  line-height: 24px;
+}
 .lh-30{
 	line-height: 30px;
 }
@@ -329,11 +359,23 @@ a{
 .bgc-primary{
 	background-color: @primary;
 }
+.border{
+	border:1px solid @border;
+}
+.bor-t{
+	border-top:1px solid @border;
+}
+.bor-r{
+	border-right:1px solid @border;
+}
+.bor-b{
+	border-bottom:1px solid @border;
+}
+.bor-l{
+	border-left:1px solid @border;
+}
 .z-0{
 	z-index: 0;
-}
-.bor-top-0{
-	border-top: 0;
 }
 .bor-t-0{
 	border-top: 0;
@@ -392,6 +434,106 @@ a{
   	color:#fff;
   }
 }
+/* 布局 */
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col,
+.col-auto {
+  position: relative;
+  width: 100%;
+}
+
+.col {
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+.col-auto {
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+.col-1 {
+  -ms-flex: 0 0 percentage(1/12);
+  flex: 0 0 percentage(1/12);
+  max-width: percentage(1/12);
+}
+
+.col-2 {
+  -ms-flex: 0 0 percentage(2/12);
+  flex: 0 0 percentage(2/12);
+  max-width: percentage(2/12);
+}
+
+.col-3 {
+  -ms-flex: 0 0 percentage(3/12);
+  flex: 0 0 percentage(3/12);
+  max-width: percentage(3/12);
+}
+
+.col-4 {
+  -ms-flex: 0 0 percentage(4/12);
+  flex: 0 0 percentage(4/12);
+  max-width: percentage(4/12);
+}
+
+.col-5 {
+  -ms-flex: 0 0 percentage(5/12);
+  flex: 0 0 percentage(5/12);
+  max-width: percentage(5/12);
+}
+
+.col-6 {
+  -ms-flex: 0 0 percentage(6/12);
+  flex: 0 0 percentage(6/12);
+  max-width: percentage(6/12);
+}
+
+.col-7 {
+  -ms-flex: 0 0 percentage(7/12);
+  flex: 0 0 percentage(7/12);
+  max-width: percentage(7/12);
+}
+
+.col-8 {
+  -ms-flex: 0 0 percentage(8/12);
+  flex: 0 0 percentage(8/12);
+  max-width: percentage(8/12);
+}
+
+.col-9 {
+  -ms-flex: 0 0 percentage(9/12);
+  flex: 0 0 percentage(9/12);
+  max-width: percentage(9/12);
+}
+
+.col-10 {
+  -ms-flex: 0 0 percentage(10/12);
+  flex: 0 0 percentage(10/12);
+  max-width: percentage(10/12);
+}
+
+.col-11 {
+  -ms-flex: 0 0 percentage(11/12);
+  flex: 0 0 percentage(11/12);
+  max-width: percentage(11/12);
+}
+
+.col-12 {
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+/* 顶部提示条 */
 .alert-msg{
 	position: fixed;
 	width: 50%;

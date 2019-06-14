@@ -7,7 +7,7 @@ module.exports = {
     port: 8085,
     proxy: {
       '/api': {
-        target: 'http://192.168.50.101',
+        target: 'http://192.168.0.0', //填上自己的地址啊
         changeOrigin: true
       }
     }

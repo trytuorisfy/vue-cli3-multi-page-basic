@@ -24,7 +24,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => {
     let data = response.data;
-    if(data.status == '2000'){
+    if(data.code == '200'){
       return data;
     }else{
       let error = new Error(data.description)

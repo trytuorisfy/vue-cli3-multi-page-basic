@@ -24,6 +24,8 @@ export default {
   },
   methods: {
     getPageData(nowPage,pageTotal){
+      nowPage = parseInt(nowPage)
+      pageTotal = parseInt(pageTotal)
       this.nowPage = nowPage;
       this.pageTotal = pageTotal;
       var pageData = [];         
@@ -59,13 +61,13 @@ export default {
         this.getDataFun();
       }      
     },
-    prePage(val){        
+    prePage(){        
       if(this.nowPage > 1){
         this.nowPage = this.nowPage - 1;
         this.getDataFun();
       }
     },
-    nextPage(val){     
+    nextPage(){     
       if(this.nowPage < this.pageTotal){
         this.nowPage = this.nowPage + 1;
         this.getDataFun();

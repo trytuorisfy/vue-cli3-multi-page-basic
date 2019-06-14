@@ -1,17 +1,17 @@
 <template>
     <div>
       <nav-header></nav-header>
-      <p>axios获取数据</p>
-      <p>
-        <button type="button" class="btn btn-primary mar-r-15" @click="getMainData(true)">拿数据</button>
-      </p>
-      <p>数据展示区</p>
+      <h3>axios获取数据</h3>
+      <button type="button" class="btn btn-primary mar-r-15" @click="getMainData(1,true)">get方式拿数据</button>
+      <button type="button" class="btn btn-outline-primary mar-r-15" @click="getPostMainData(1,true)">post方式拿数据</button>
+      <h3>数据展示区</h3>
+      <p>数据来自easy mock</p>
       <div style="min-height: 200px">
-        <p v-for="item in mainData">{{ item.name }}</p>
+        <div v-for="item in mainData">{{ item.no }} : {{ item.name }}</div>
       </div>
-      <p>分页</p>
+      <h3>分页</h3>
       <pages ref="pagesRef"></pages>
-      <p>按钮</p>
+      <h3>按钮</h3>
       <div class="mar-l-15">
         <button type="button" class="btn btn-primary mar-r-15">主色</button>
         <button type="button" class="btn btn-outline-primary mar-r-15">主色带边框</button>
@@ -23,6 +23,19 @@
         </div>                       
       </div>
       <div class="alert-msg" id="alert-msg">uuuu</div>
+      <h3>布局</h3>
+      <div class="pad-30">
+        <div class="row">
+          <div class="col-4">col-4</div>
+          <div class="col-4">col-4</div>          
+          <div class="col-4">col-4</div>          
+        </div>
+        <div class="row">
+          <div class="col-auto">col-auto</div>
+        </div>
+      </div>
+      <h3>边框</h3>
+      <div class="border">边框</div>
       <main-footer></main-footer>
     </div>
 </template>
@@ -73,23 +86,44 @@
           if(!nowPage){
             nowPage = 1;
           }
-          var url = '/api/estimate_history/list';
-
-          let state = '',
-              result = '',
-              platform = '',
-              time_type = 'infinite',
-              categories = [],
-              basic_specs_ids = [],
-              keyword = ''     
-
-          let sendArry = {'state':state,'result':result,'platform':platform,'time_type':time_type,'categories':categories,'basic_specs_ids':basic_specs_ids,'page':nowPage,'keyword':keyword,'pagesize':5}
+          let url = 'https://easy-mock.com/mock/5b7a296e2a67c635a14e910f/example/list';
+          url += "?page=" + nowPage;
+          console.log(url)
+          this.$http.get(url).then(
+            res => { 
+              this.loading = false;
+              let data = res.data;
+              if(data.data.length){
+                this.mainData = data.data;                 
+              }else{
+                this.mainData = [];
+                this.errMsg = '无匹配数据';
+              }
+              this.$refs.pagesRef.getPageData(data.page,data.pages);
+            }, 
+            err => {
+              this.errMsg = err.data.err_msg;
+            }
+          );
+        },
+        getPostMainData(nowPage,status){
+          this.errMsg = '';
+          if(status){
+            this.loading = true;
+            this.mainData = [];
+            nowPage = 1;
+          }
+          if(!nowPage){
+            nowPage = 1;
+          }
+          let url = 'https://easy-mock.com/mock/5b7a296e2a67c635a14e910f/example/send';
+          let sendArry = {'page':nowPage}
           this.$http.post(url,sendArry).then(
             res => { 
               this.loading = false;
               let data = res.data;
-              if(data.rows.length){
-                this.mainData = data.rows;                 
+              if(data.data.length){
+                this.mainData = data.data;                 
               }else{
                 this.mainData = [];
                 this.errMsg = '无匹配数据';
@@ -123,5 +157,8 @@
 <style scoped lang="less">
   .alert-msg{
     display: none;
+  }
+  .bgc-pink{
+    background-color: pink;
   }
 </style>
