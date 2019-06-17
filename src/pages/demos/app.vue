@@ -39,6 +39,10 @@
       </div>
       <h3>边框</h3>
       <div class="border">边框</div>
+      <h3>bass.less中的变量是否可以使用</h3>
+      <div>
+        <span class="bgc-blue">背景蓝色生效否</span>
+      </div>
       <main-footer></main-footer>
     </div>
 </template>
@@ -163,5 +167,8 @@
   }
   .bgc-pink{
     background-color: pink;
+  }
+  .bgc-blue{
+    background-color: @blue;
   }
 </style>

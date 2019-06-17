@@ -22,6 +22,7 @@
 @dark: #343a40;
 @border:#ced4da;
 @body:#212529;
+@sub:#828282;
 html{
 	font-size:14px;
 }
@@ -54,6 +55,12 @@ a{
 }
 .pr{
 	position: relative;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
 }
 .db{
 	display: block;
@@ -132,8 +139,14 @@ a{
 .fs-18{
 	font-size: 18px;
 }
+.tal{
+	text-align: left;
+}
 .tac{
 	text-align: center;
+}
+.tar{
+	text-align: right;
 }
 .tdu{
   text-decoration: underline;
@@ -148,6 +161,9 @@ a{
 		text-decoration: underline;
 		cursor: pointer;
 	}
+}
+.c-body{
+	color: @body;
 }
 .c-blue{
 	color: @blue;
@@ -172,6 +188,9 @@ a{
 	&:hover,&:active,&:focus{
 		color: #dadada;
 	}
+}
+.c-sub{
+	color:#828282;
 }
 .c-tit{
   color:@gray-dark;
@@ -318,6 +337,9 @@ a{
 .mar-b-0{
 	margin-bottom: 0;
 }
+.mar-b-5{
+	margin-bottom: 5px;
+}
 .mar-b-10{
 	margin-bottom: 10px;
 }
@@ -423,6 +445,9 @@ a{
 		opacity: 0.65;
 		cursor: default;
 	}
+	&.btn-round{
+		border-radius:1.5rem;
+	}
 }
 .btn-primary {
   color: #fff;
@@ -432,6 +457,16 @@ a{
   }
 	&.disabled{
 		background-color: darken(@primary,0);
+	}
+}
+.btn-danger {
+  color: #fff;
+  background-color: @danger;
+  &:hover{
+  	background-color: darken(@danger,10%);
+  }
+	&.disabled{
+		background-color: darken(@danger,0);
 	}
 }
 .btn-outline-primary {
