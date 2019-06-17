@@ -33,15 +33,12 @@
           <div class="col-4">col-4</div>          
           <div class="col-4">col-4</div>          
         </div>
-        <div class="row">
-          <div class="col-auto">col-auto</div>
-        </div>
       </div>
       <h3>边框</h3>
       <div class="border">边框</div>
-      <h3>bass.less中的变量是否可以使用</h3>
+      <h3>less全局变量</h3>
       <div>
-        <span class="bgc-blue">背景蓝色生效否</span>
+        <span class="bgc-blue">背景蓝色生效</span>
       </div>
       <main-footer></main-footer>
     </div>
