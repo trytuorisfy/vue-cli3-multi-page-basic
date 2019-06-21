@@ -3,7 +3,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import App from './app.vue'
 import $ from 'jquery'
-import '@/assets/css/base.css'
+import '@/assets/css/simple-base.less'
 
 Vue.config.productionTip = false;
 

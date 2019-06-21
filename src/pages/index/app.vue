@@ -1,12 +1,12 @@
 <template>
     <div>
         <h1>index</h1>
-        <a href="view1.html">view1</a>
+        <a href="demos.html">demos</a>
         &nbsp;
         &nbsp;
         &nbsp;
         &nbsp;
-        <a href="view2.html">view2</a>
+        <a href="element.html">element</a>
     </div>
 </template>
 

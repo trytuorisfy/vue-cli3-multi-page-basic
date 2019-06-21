@@ -69,8 +69,20 @@
         domInit() {
 
         },
+        getData(){
+          this.$http.get('https://easy-mock.com/mock/5b7a296e2a67c635a14e910f/example/user').then(
+            res => {
+              console.log(res)
+            },
+            err => {
+              console.log("接受数据错误" + err);
+            }
+          ).catch(err => {
+            console.log("服务器错误" + err);
+          })          
+        },
         getSimpleMainData(){
-          this.$http.get('/api/auth/userinfo').then(
+          this.$http.get('https://easy-mock.com/mock/5b7a296e2a67c635a14e910f/example/user').then(
             res => {
               console.log(res.data)
             },
