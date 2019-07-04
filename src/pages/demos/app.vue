@@ -9,6 +9,7 @@
       <div style="min-height: 200px">
         <div v-for="item in mainData">{{ item.no }} : {{ item.name }}</div>
       </div>
+      <div v-show="errMsg">{{ errMsg }}</div>
       <h3>分页</h3>
       <pages ref="pagesRef"></pages>
       <h3>按钮</h3>
@@ -40,6 +41,30 @@
       <div>
         <span class="bgc-blue">背景蓝色生效</span>
       </div>
+      <h3>图片背景</h3>
+      <div class="bg-img"></div>
+      <h3>es6</h3>
+      <div>
+        字符串拼接<br>
+        {{ stringMsg }}
+      </div>
+      <h3>flex布局</h3>
+      <div class="wrap big">
+        <div class="flex-wrap">
+          <div class="flex-item" v-for="item in 5">
+            666
+            <!-- <img src="./juju.png" alt=""> -->
+          </div>
+        </div>
+      </div>
+      <h3>axios cancel request</h3>
+      <div>
+        <a class="btn btn-primary mar-r-15" @click="getData()">获取用户信息</a>
+        <a class="btn btn-default mar-r-15" @click="cancelGetData()">取消请求</a>
+        <div class="min-h">
+          {{ userData.name }}
+        </div>
+      </div>
       <main-footer></main-footer>
     </div>
 </template>
@@ -59,30 +84,57 @@
         return {
          mainData:[],
          errMsg:'',
-         loading:false
+         loading:false,
+         stringMsg:'',
+         msg:'yoyoyo',
+         userData:'',
+         cancel: null //取消请求的函数
         }
       },
       mounted(){
-
+        this.stringMsg = `我是string拼接了如下msg：${this.msg}`
       },
       methods: {
         domInit() {
 
         },
         getData(){
-          this.$http.get('https://easy-mock.com/mock/5b7a296e2a67c635a14e910f/example/user').then(
+
+          let CancelToken = this.$http.CancelToken;
+          let me = this;
+
+          // setTimeout(() => {
+          //   source.cancel('Operation canceled by the user.');
+          // },200)
+
+          this.$http.get('/user',{
+            cancelToken: new CancelToken(function executor(c) {
+              me.cancel = c
+              console.log(c)
+              // 这个参数 c 就是CancelToken构造函数里面自带的取消请求的函数，这里把该函数当参数用
+            })
+          }).then(
             res => {
               console.log(res)
+              this.userData = res.data;
             },
             err => {
               console.log("接受数据错误" + err);
             }
           ).catch(err => {
             console.log("服务器错误" + err);
-          })          
+            if (this.$http.isCancel(thrown)) {
+              console.log('Request canceled', thrown.message);
+            } else {
+              // handle error
+            }
+          })        
+        },
+        cancelGetData () {
+          this.cancel()
         },
         getSimpleMainData(){
-          this.$http.get('https://easy-mock.com/mock/5b7a296e2a67c635a14e910f/example/user').then(
+          this.$http.get('/user').then(
             res => {
               console.log(res.data)
             },
@@ -93,6 +145,7 @@
           )
         },
         getMainData(nowPage,status){
+          console.log('getMainData')
           this.errMsg = '';
           if(status){
             this.loading = true;
@@ -102,9 +155,8 @@
           if(!nowPage){
             nowPage = 1;
           }
-          let url = 'https://easy-mock.com/mock/5b7a296e2a67c635a14e910f/example/list';
+          let url = '/list';
           url += "?page=" + nowPage;
-          console.log(url)
           this.$http.get(url).then(
             res => { 
               this.loading = false;
@@ -116,9 +168,6 @@
                 this.errMsg = '无匹配数据';
               }
               this.$refs.pagesRef.getPageData(data.page,data.pages);
-            }, 
-            err => {
-              this.errMsg = err.data.err_msg;
             }
           );
         },
@@ -132,7 +181,7 @@
           if(!nowPage){
             nowPage = 1;
           }
-          let url = 'https://easy-mock.com/mock/5b7a296e2a67c635a14e910f/example/send';
+          let url = '/send';
           let sendArry = {'page':nowPage}
           this.$http.post(url,sendArry).then(
             res => { 
@@ -171,6 +220,11 @@
 </script>
 
 <style scoped lang="less">
+  .wrap{
+    width: 1200px;
+    margin:0 auto;
+    // background-color: pink;
+  }
   .alert-msg{
     display: none;
   }
@@ -179,5 +233,30 @@
   }
   .bgc-blue{
     background-color: @blue;
+  }
+  .bg-img{
+    width: 100px;
+    height: 100px;
+    background: url('../../assets/logo.png') no-repeat center;
+    background-size: contain;
+  }
+  .flex-wrap{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    .flex-item{
+      height: 200px;
+      width: calc(~"100%/5 - 20px");
+      margin-bottom: 20px;
+      // background-color: orange;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  .min-h{
+    min-height: 200px;
   }
 </style>

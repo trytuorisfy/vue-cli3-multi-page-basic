@@ -1,6 +1,8 @@
 <template>
   <div>
     <nav-header></nav-header>
+    <div class="easy">yoyoyoyo</div>
+    <div class="wrap">hello everyone</div>
   </div>
 </template>
 
@@ -25,6 +27,11 @@
   }
 </script>
 
-<style scoped lang="less">
-
+<style scoped lang="stylus">
+  .easy
+    color red
+    background-color pink
+    border-radius 4px
+    border-color #999
+    width 500px
 </style>
