@@ -39,7 +39,7 @@
             console.log(localStorage) 
 
             //未登录被弹出后登陆成功后进入先前的页面
-            var backUrlString = me.getUrlParam("backurl");
+            var backUrlString = this.getUrlParam("backurl");
             if (backUrlString) {
               window.location.href = '/' + backUrlString;
             } else {
