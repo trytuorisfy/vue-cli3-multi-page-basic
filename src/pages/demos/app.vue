@@ -65,6 +65,16 @@
           {{ userData.name }}
         </div>
       </div>
+      <h3>iconfont</h3>
+      <div><i class="iconfont iconmoreunfold"></i></div>
+      <h3>重置数据</h3>
+      <div>
+        <div>
+          <input type="text" v-model='msg'>
+          <button type="btn" class="btn btn-primary" @click="resetData()">重置</button>
+        </div>
+        
+      </div>
       <main-footer></main-footer>
     </div>
 </template>
@@ -88,7 +98,8 @@
          stringMsg:'',
          msg:'yoyoyo',
          userData:'',
-         cancel: null //取消请求的函数
+         cancel: null, //取消请求的函数
+         msg:'原来信息'
         }
       },
       mounted(){
@@ -214,7 +225,10 @@
           var regex = new RegExp( regexS );
           var results = regex.exec( url );
           return results == null ? '' : results[1];       
-        }         
+        },
+        resetData(){
+          Object.assign(this.$data, this.$options.data.call(this));
+        }       
       }
     }
 </script>
